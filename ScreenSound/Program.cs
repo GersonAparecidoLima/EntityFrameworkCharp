@@ -6,8 +6,20 @@ using ScreenSound.Modelos;
 
 try
 {
+    var context = new ScreenSoundContext();
+    var artistaDAL = new ArtistaDAL(context);
 
-    var artistaDAL = new ArtistaDAL();
+    var novoArtista = new Artista("Fernanda Brum", "Fernanda Brum, é uma cantora, escritora, atriz, apresentadora, compositora, produtora e pastora, relacionada à música cristã contemporânea brasileira.");
+
+    // artistaDAL.Adicionar(novoArtista);
+
+    // Console.WriteLine($"Artista '{novoArtista.Nome}' adicionado com sucesso!");
+    // Console.WriteLine("---");
+
+    //var novoArtista = new Artista("Fernanda Brum", "Fernanda Brum, é uma cantora, escritora, atriz, apresentadora, compositora, produtora e pastora, relacionada à música cristã contemporânea brasileira.") { Id = 5002 };
+    //artistaDAL.Deletar(novoArtista)
+
+    // 3. Obtém a lista ATUALIZADA de artistas do banco de dados
     var listaArtistas = artistaDAL.Listar();
 
     foreach (var artista in listaArtistas)
