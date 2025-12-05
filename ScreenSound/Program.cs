@@ -4,6 +4,22 @@ using ScreenSound.Modelos;
 
 var context = new ScreenSoundContext();
 var artistaDal = new ArtistaDAL(context);
+var musicaDAL = new MusicaDAL(context);
+
+//var musicaNova = new Musica("Zero") { Id = 3 };
+//var musicaNova2 = new Musica("Girassol editada") { Id = 2 };
+/*musicaDAL.Adicionar(musicaNova);*/
+//musicaDAL.Atualizar(musicaNova2);
+//musicaDAL.Deletar(musicaNova);
+
+
+var listaDeMusicas = musicaDAL.Listar();
+foreach (var musica in listaDeMusicas)
+{
+    Console.WriteLine(musica);
+}
+
+
 
 Artista ira = new Artista("Ira!", "Banda Ira!");
 Artista beatles = new("The Beatles", "Banda The Beatles");
