@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ScreenSound.Banco
 {
-    internal class ArtistaDAL
+    internal class ArtistaDAL : DAL<Artista>
     {
         // 1. Armazena a instância do contexto (DbContext)
         private readonly ScreenSoundContext context;
@@ -21,7 +21,7 @@ namespace ScreenSound.Banco
         }
 
 
-        public IEnumerable<Artista> Listar()
+        public override IEnumerable<Artista> Listar()
         {
            // using var context = new ScreenSoundContext();
             // LISTA
@@ -31,21 +31,21 @@ namespace ScreenSound.Banco
 
 
 
-        public void Adicionar(Artista artista)
+        public override void Adicionar(Artista artista)
         {
             using var context = new ScreenSoundContext();
             context.Artistas.Add(artista);
             context.SaveChanges();  
         }
 
-        public void Atualizar(Artista artista)
+        public override void Atualizar(Artista artista)
         {
             // Usa o método Update do EF Core
             context.Artistas.Update(artista);
             context.SaveChanges();
         }
 
-        public void Deletar(Artista artista)
+        public override void Deletar(Artista artista)
         {
             // Usa o método Remove do EF Core
             context.Artistas.Remove(artista);
