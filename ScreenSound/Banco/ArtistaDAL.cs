@@ -52,7 +52,7 @@ namespace ScreenSound.Banco
             context.SaveChanges();
         }
 
-        public Artista? RecuperarPorNome(string nome)
+        public Artista? RecuperarPeloNome(string nome)
         {
             // Método útil para buscar
             return context.Artistas.FirstOrDefault(a => a.Nome.Equals(nome));

@@ -2,39 +2,8 @@
 using ScreenSound.Menus;
 using ScreenSound.Modelos;
 
-
-
-try
-{
-    var context = new ScreenSoundContext();
-    var artistaDAL = new ArtistaDAL(context);
-
-    var novoArtista = new Artista("Fernanda Brum", "Fernanda Brum, é uma cantora, escritora, atriz, apresentadora, compositora, produtora e pastora, relacionada à música cristã contemporânea brasileira.");
-
-    // artistaDAL.Adicionar(novoArtista);
-
-    // Console.WriteLine($"Artista '{novoArtista.Nome}' adicionado com sucesso!");
-    // Console.WriteLine("---");
-
-    //var novoArtista = new Artista("Fernanda Brum", "Fernanda Brum, é uma cantora, escritora, atriz, apresentadora, compositora, produtora e pastora, relacionada à música cristã contemporânea brasileira.") { Id = 5002 };
-    //artistaDAL.Deletar(novoArtista)
-
-    // 3. Obtém a lista ATUALIZADA de artistas do banco de dados
-    var listaArtistas = artistaDAL.Listar();
-
-    foreach (var artista in listaArtistas)
-    {
-        Console.WriteLine(artista);
-    }
-}
-catch (Exception ex)
-{
-    Console.WriteLine(ex.Message);
-}
-
-
-
-return;
+var context = new ScreenSoundContext();
+var artistaDal = new ArtistaDAL(context);
 
 Artista ira = new Artista("Ira!", "Banda Ira!");
 Artista beatles = new("The Beatles", "Banda The Beatles");
@@ -64,7 +33,8 @@ void ExibirLogo()
     Console.WriteLine("Boas vindas ao Screen Sound 3.0!");
 }
 
-void ExibirOpcoesDoMenu()
+//void ExibirOpcoesDoMenu()
+void ExibirOpcoesDoMenu(ArtistaDAL artistaDAL) // Agora ele recebe o DAL como argumento
 {
     ExibirLogo();
     Console.WriteLine("\nDigite 1 para registrar um artista");
@@ -80,8 +50,9 @@ void ExibirOpcoesDoMenu()
     if (opcoes.ContainsKey(opcaoEscolhidaNumerica))
     {
         Menu menuASerExibido = opcoes[opcaoEscolhidaNumerica];
-        menuASerExibido.Executar(artistasRegistrados);
-        if (opcaoEscolhidaNumerica > 0) ExibirOpcoesDoMenu();
+        menuASerExibido.Executar(artistaDAL);
+        //if (opcaoEscolhidaNumerica > 0) ExibirOpcoesDoMenu();
+        if (opcaoEscolhidaNumerica > 0) ExibirOpcoesDoMenu(artistaDAL); // <- Lembre-se de passar na recursão!
     } 
     else
     {
@@ -89,4 +60,5 @@ void ExibirOpcoesDoMenu()
     }
 }
 
-ExibirOpcoesDoMenu();
+//ExibirOpcoesDoMenu();
+  ExibirOpcoesDoMenu(artistaDal); // Passando a variável que foi declarada!
